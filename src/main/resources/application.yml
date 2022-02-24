@@ -1,0 +1,32 @@
+server:
+  port: 28080
+  servlet:
+    context-path: /taxi-app
+spring:
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://localhost:3306/taxi?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    #MYSQL 8.0 以上驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#Mybatis输出sql日志
+logging:
+  level:
+    org.jeecg.modules.system.mapper: debug
+#mybatis plus 设置
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      # 默认数据库表下划线命名
+      table-underline: true
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+# 本地开发环境配置,Mysql 8.0 使用新的connect 连接
