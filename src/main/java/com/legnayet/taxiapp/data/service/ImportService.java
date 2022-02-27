@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 /**
  * description: ImportService
@@ -110,6 +112,20 @@ public class ImportService {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+//    @PostConstruct
+    public void setUnRep(){
+        List<Order> orders = orderMapper.selectList(null);
+        for (int i = 0; i < orders.size();) {
+            Order order = orders.get(i);
+            order.setIsShow(0);
+            orderMapper.updateById(order);
+
+            Random random = new Random();
+            int i1 = random.nextInt(5);
+            i+=i1;
         }
     }
 

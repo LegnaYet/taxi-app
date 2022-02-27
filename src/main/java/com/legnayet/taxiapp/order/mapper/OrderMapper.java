@@ -1,8 +1,9 @@
 package com.legnayet.taxiapp.order.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.legnayet.taxiapp.order.entity.Order;
 
-public interface OrderMapper {
+public interface OrderMapper extends BaseMapper<Order> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Order record);

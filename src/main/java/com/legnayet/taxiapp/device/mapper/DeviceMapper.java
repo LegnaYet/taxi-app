@@ -1,9 +1,10 @@
 package com.legnayet.taxiapp.device.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.legnayet.taxiapp.device.entity.Device;
 import org.springframework.stereotype.Repository;
 
-public interface DeviceMapper {
+public interface DeviceMapper extends BaseMapper<Device> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Device record);
