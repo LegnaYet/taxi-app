@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.legnayet.taxiapp.device.mapper.DeviceMapper">
+  <resultMap id="BaseResultMap" type="com.legnayet.taxiapp.device.entity.Device">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="hum" jdbcType="VARCHAR" property="hum" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="station" jdbcType="VARCHAR" property="station" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="last_online_date" jdbcType="TIMESTAMP" property="lastOnlineDate" />
+    <result column="is_online" jdbcType="VARCHAR" property="isOnline" />
+    <result column="response_times" jdbcType="INTEGER" property="responseTimes" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="mbat" jdbcType="VARCHAR" property="mbat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, device_type, area, version, `temp`, hum, `position`, station, `location`, 
+    last_online_date, is_online, response_times, `status`, mbat
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_device
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_device
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.legnayet.taxiapp.device.entity.Device" useGeneratedKeys="true">
+    insert into t_device (device_id, device_type, area, 
+      version, `temp`, hum, 
+      `position`, station, `location`, 
+      last_online_date, is_online, response_times, 
+      `status`, mbat)
+    values (#{deviceId,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{area,jdbcType=VARCHAR}, 
+      #{version,jdbcType=VARCHAR}, #{temp,jdbcType=VARCHAR}, #{hum,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{station,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{lastOnlineDate,jdbcType=TIMESTAMP}, #{isOnline,jdbcType=VARCHAR}, #{responseTimes,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{mbat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.legnayet.taxiapp.device.entity.Device" useGeneratedKeys="true">
+    insert into t_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="temp != null">
+        `temp`,
+      </if>
+      <if test="hum != null">
+        hum,
+      </if>
+      <if test="position != null">
+        `position`,
+      </if>
+      <if test="station != null">
+        station,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="lastOnlineDate != null">
+        last_online_date,
+      </if>
+      <if test="isOnline != null">
+        is_online,
+      </if>
+      <if test="responseTimes != null">
+        response_times,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="mbat != null">
+        mbat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="hum != null">
+        #{hum,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null">
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOnlineDate != null">
+        #{lastOnlineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOnline != null">
+        #{isOnline,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTimes != null">
+        #{responseTimes,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mbat != null">
+        #{mbat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.legnayet.taxiapp.device.entity.Device">
+    update t_device
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null">
+        `temp` = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="hum != null">
+        hum = #{hum,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        `position` = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null">
+        station = #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOnlineDate != null">
+        last_online_date = #{lastOnlineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOnline != null">
+        is_online = #{isOnline,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTimes != null">
+        response_times = #{responseTimes,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mbat != null">
+        mbat = #{mbat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.legnayet.taxiapp.device.entity.Device">
+    update t_device
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
+      area = #{area,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      `temp` = #{temp,jdbcType=VARCHAR},
+      hum = #{hum,jdbcType=VARCHAR},
+      `position` = #{position,jdbcType=VARCHAR},
+      station = #{station,jdbcType=VARCHAR},
+      `location` = #{location,jdbcType=VARCHAR},
+      last_online_date = #{lastOnlineDate,jdbcType=TIMESTAMP},
+      is_online = #{isOnline,jdbcType=VARCHAR},
+      response_times = #{responseTimes,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
+      mbat = #{mbat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
